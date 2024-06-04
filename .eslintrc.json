@@ -56,6 +56,7 @@
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "react/jsx-props-no-spreading": "off",
-    "tailwindcss/no-custom-classname": ["off"]
+    "tailwindcss/no-custom-classname": ["off"],
+    "import/no-unresolved": ["off"]
   }
 }

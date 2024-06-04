@@ -1,107 +1,98 @@
-import { Inter } from 'next/font/google';
-import Image from 'next/image';
+import { useCallback, useEffect, useState, useRef } from 'react';
 
-const inter = Inter({ subsets: ['latin'] });
+import EmptyState from '@components/reusable/EmptyState';
+import Pagination from '@components/reusable/Pagination';
+import ContentList from '@components/standalone/Home/ContentList';
+import ContentTitle from '@components/standalone/Home/ContentTitle';
+import SearchBar from '@components/standalone/Home/SearchBar';
+import getListPhoto from '@services/photos/getListPhoto';
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin'] });
 
 export default function Home() {
+  const limit = 12;
+  const contentContainerRef = useRef(null);
+
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalData, setTotalData] = useState(0);
+  const [query, setQuery] = useState('');
+
+  const [keyword, setKeyword] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const onChangeKeyword = e => {
+    setKeyword(e.target.value);
+  };
+
+  // const onSearch = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     setQuery(keyword);
+  //     const res = await getListPhoto({ query: keyword, limit, page: currentPage });
+  //     setData(res?.photos || []);
+  //     setTotalData(res?.total_results || 0);
+  //   } catch (err) {
+  //     console.log(err);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  const onSearch = () => {
+    setQuery(keyword);
+  };
+
+  const onGetListPhoto = useCallback(async () => {
+    if (query) {
+      try {
+        setIsLoading(true);
+        const res = await getListPhoto({ query, limit, page: currentPage });
+        setData(res?.photos || []);
+        setTotalData(res?.total_results || 0);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+        if (contentContainerRef.current) {
+          contentContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+  }, [currentPage, limit, query]);
+
+  useEffect(() => {
+    onGetListPhoto();
+  }, [onGetListPhoto]);
+
   return (
-    <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white lg:static lg:size-auto lg:bg-none dark:from-black dark:via-black">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By <Image alt="Vercel Logo" className="dark:invert" width={100} height={24} priority />
-          </a>
+    <main className={`flex w-full flex-col ${poppins.className}`}>
+      <div className="flex flex-col px-4 tablet:px-10">
+        <div className="mx-auto grid w-full max-w-screen-laptopM">
+          <SearchBar keyword={keyword} onChangeKeyword={onChangeKeyword} onSearch={onSearch} />
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div
+          ref={contentContainerRef}
+          aria-hidden={!query}
+          className="mx-auto flex w-full max-w-screen-desktopL flex-col gap-y-10 py-32 aria-hidden:hidden"
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+          <ContentTitle title={query} />
+          <div className="flex min-h-[800px] flex-col ">
+            {totalData === 0 && !isLoading && <EmptyState query={query} />}
+            {(totalData > 0 || isLoading) && <ContentList data={data} isLoading={isLoading} />}
+          </div>
+          {(totalData > 0 || isLoading) && (
+            <div className="flex items-center justify-center py-10">
+              <Pagination
+                currentPage={currentPage}
+                onChange={value => setCurrentPage(value)}
+                totalData={totalData}
+                pageSize={limit}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );
