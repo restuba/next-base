@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Pagination from '@components/reusable/Pagination';
 import ContentList from '@components/standalone/Home/ContentList';
@@ -26,17 +26,23 @@ export default function Home() {
   };
 
   const onSearch = async () => {
+    setQuery(keyword);
+  };
+
+  // handling get list photo using use effect hooks here
+  const onGetListPhoto = useCallback(async () => {
     try {
-      setQuery(keyword);
-      const res = await getListPhoto({ query: keyword, page: currentPage, limit });
+      const res = await getListPhoto({ query, page: currentPage, limit });
       setData(res?.photos || []);
       setTotalData(res?.total_results || 0);
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [query, currentPage]);
 
-  // handling get list photo using use effect hooks here
+  useEffect(() => {
+    onGetListPhoto();
+  }, [onGetListPhoto]);
 
   return (
     <main className={`flex w-full flex-col ${poppins.className}`}>

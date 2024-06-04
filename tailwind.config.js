@@ -16,7 +16,7 @@ module.exports = {
         primary: '#4285F4'
       },
       boxShadow: {
-        'card-hover': '0px 0px 999px 999px rgba(255, 255, 255, 0.15)'
+        'card-hover': '0px 0px 999px 999px rgba(255, 255, 255, 0.2)'
       }
     },
     screens: {
