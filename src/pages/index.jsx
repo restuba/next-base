@@ -1,3 +1,4 @@
+import Pagination from '@components/reusable/Pagination';
 import ContentList from '@components/standalone/Home/ContentList';
 import ContentTitle from '@components/standalone/Home/ContentTitle';
 import SearchBar from '@components/standalone/Home/SearchBar';
@@ -14,6 +15,7 @@ export default function Home() {
           <ContentTitle />
           <ContentList />
           {/* create pagination and then render here */}
+          <Pagination />
         </div>
       </div>
     </main>
