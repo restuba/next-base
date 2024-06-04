@@ -36,6 +36,8 @@ export default function Home() {
     }
   };
 
+  // handling get list photo using use effect hooks here
+
   return (
     <main className={`flex w-full flex-col ${poppins.className}`}>
       <div className="flex flex-col px-4 py-12 tablet:px-10">
