@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
     "strict": true,
+    "outDir": ".next",
     "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@public/*": ["./public/*"],
       "@components/*": ["./src/components/*"],
@@ -13,12 +19,6 @@
       "@styles/*": ["./src/styles/*"]
     }
   },
-  "include": [
-    "**/*.js",
-    "**/*.jsx",
-    "**/*.config.js",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["**/*.js", "**/*.jsx", "**/*.config.js"],
+  "exclude": ["node_modules"]
 }

@@ -2,32 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  html {
+    @apply scroll-smooth;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+@layer components {
+  .btn {
+    @apply font-semibold outline-none border rounded disabled:!cursor-not-allowed hover:enabled:brightness-125 transition-all duration-500 py-4 px-6 text-base active:outline-4 outline-offset-0 disabled:!bg-gray-400 active:disabled:outline-gray-400/25 overflow-ellipsis whitespace-nowrap line-clamp-1 disabled:!text-white disabled:!border-gray-400;
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .btn-primary {
+    @apply bg-primary border-primary text-white active:outline-primary/25;
+  }
+
+  .btn-primary-disabled {
+    @apply bg-gray-500 border-gray-500 text-white active:outline-primary/25;
+  }
+
+  .input-text {
+    @apply outline-none border focus:shadow-xl bg-gray-50/80 focus:outline-4 focus:outline-primary/25 focus:bg-white rounded py-4 px-6 text-base outline-offset-0 border-gray-200 transition-all duration-500;
   }
 }
