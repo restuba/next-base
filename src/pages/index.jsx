@@ -1,11 +1,21 @@
-import React from 'react';
+import ContentList from '@components/standalone/Home/ContentList';
+import ContentTitle from '@components/standalone/Home/ContentTitle';
+import SearchBar from '@components/standalone/Home/SearchBar';
+import { Poppins } from 'next/font/google';
 
-const Home = () => {
+const poppins = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin'] });
+
+export default function Home() {
   return (
-    <div>
-      <div>Home Page</div>
-    </div>
+    <main className={`flex w-full flex-col ${poppins.className}`}>
+      <div className="flex flex-col px-4 py-12 tablet:px-10">
+        <div className="mx-auto flex w-full max-w-screen-laptopM flex-col gap-y-8">
+          <SearchBar />
+          <ContentTitle />
+          <ContentList />
+          {/* create pagination and then render here */}
+        </div>
+      </div>
+    </main>
   );
-};
-
-export default Home;
+}
