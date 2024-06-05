@@ -1,40 +1,127 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Name
 
-## Getting Started
+## Table of Contents
 
-First, run the development server:
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Cloning the Repository](#cloning-the-repository)
+- [ReactJS](#reactjs)
+- [Catatan](#catatan)
+- [React Core Concept](#react-core-concept)
+- [API Consume (NextJS)](#api-consume-nextjs)
+- [Use Effect Hooks](#use-effect-hooks)
+- [Tailwind](#tailwind)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Introduction
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Brief description of what the project is about and its purpose.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Prerequisites
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Before you begin, ensure you have met the following requirements:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- You have installed [Git](https://git-scm.com/).
+- You have a [GitHub](https://github.com/) account.
+- You have access to the repository you want to clone.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Cloning the Repository
 
-## Learn More
+To clone a specific branch of the repository, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. Open your terminal or command prompt.
+2. Navigate to the directory where you want to clone the repository.
+3. Use the following command to clone the specific branch:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```sh
+   git clone -b <branch-name> https://github.com/restuba/next-base.git
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   Replace `<branch-name>` with the name of the branch you want to clone. For example:
 
-## Deploy on Vercel
+   ```sh
+   git clone -b feature-branch https://github.com/restuba/next-base.git
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Navigate into the cloned repository:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```sh
+   cd next-base
+   ```
+
+## ReactJS
+
+- Sebuah library JavaScript untuk membuat antarmuka pengguna yang interaktif.
+- Bersifat un-opinionated.
+- Bersifat Declarative UI library.
+
+## Catatan
+
+- [Functions](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Functions) dan [Arrow Functions](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- [Objects](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+- [Arrays and array methods](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- [Destructuring](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+- [Template literals](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals)
+- [Ternary Operators](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)
+- [ES Modules and Import / Export Syntax](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules)
+
+## React Core Concept
+
+- Components
+- Props
+- State and Hooks
+
+### Components
+
+- JSX
+- UI bisa dipecah menjadi bagian-bagian kecil yang disebut dengan component.
+- Reusable.
+- Component pada React pada dasarnya adalah sebuah function.
+
+### Props
+
+- Komunikasi antar komponen.
+
+### State and Hooks
+
+#### State
+
+- Data yang berubah seiring waktu.
+- Untuk menambahkan interaktivitas pada elemen, React menggunakan state dan juga Event Handler.
+
+#### Hooks
+
+- React memiliki serangkaian function yang disebut dengan hooks, yang memungkinkan kita menambahkan logic di dalam komponen kita.
+- Salah satu hooks yang paling sering digunakan di React untuk mengelola state adalah `useState()`.
+- Elemen pertama adalah nilai.
+- Elemen kedua adalah function untuk mengubah nilainya.
+- Bisa memberikan default value.
+
+## API Consume (NextJS)
+
+- Menggunakan `getServerSideProps`.
+- Menggunakan client side.
+
+## Use Effect Hooks
+
+- Memungkinkan melakukan side effect di dalam komponen fungsional.
+- Metode lifecycle (`componentDidMount`, `componentDidUpdate`, `componentWillUnmount`).
+
+## Tailwind
+
+- Merupakan sebuah framework CSS yang berbasis utility-first.
+- Kontrol penuh.
+
+## Usage
+
+Instructions on how to use the project after cloning. This might include setting up the environment, running scripts, etc.
+
+## Contributing
+
+Guidelines for contributing to the project. This might include steps to fork the repository, create a branch, submit a pull request, etc.
+
+## License
+
+Information about the project's license.
