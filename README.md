@@ -11,6 +11,7 @@
 - [API Consume (NextJS)](#api-consume-nextjs)
 - [Use Effect Hooks](#use-effect-hooks)
 - [Tailwind](#tailwind)
+- [Sandbox](#sandbox)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
@@ -113,6 +114,10 @@ To clone a specific branch of the repository, follow these steps:
 
 - Merupakan sebuah framework CSS yang berbasis utility-first.
 - Kontrol penuh.
+
+## Sandbox
+
+Link to the sandbox: [Notion](https://titanium-green-dcd.notion.site/Bagian-f8eea6e7dca34593839e3d85a76b7cf9?pvs=4)
 
 ## Usage
 
